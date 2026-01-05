@@ -1,0 +1,19 @@
+<header>
+    <div class="container">
+        <nav>
+            <a href="{% url 'index:index' %}" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-feather-alt"></i>
+                </div>
+                Анна | Русский язык
+            </a>
+            <div class="nav-links">
+                <a href="{% url 'index:index' %}#about" class="nav-link">Обо мне</a>
+                <a href="{% url 'blog:posts' %}" class="nav-link">Блог</a>
+                <a href="{% url 'index:index' %}#reviews" class="nav-link">Отзывы</a>
+                <a href="{% url 'index:index' %}#contact" class="nav-link">Контакты</a>
+                <a href="{% url 'index:index' %}#contact" class="btn btn-primary">Записаться на урок</a>
+            </div>
+        </nav>
+    </div>
+</header>

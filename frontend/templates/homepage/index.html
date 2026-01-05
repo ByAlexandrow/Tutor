@@ -1,0 +1,684 @@
+{% extends "base.html" %}
+
+{% block title %}Анна | Русский язык с теплом{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Hero */
+    .hero {
+        padding: 140px 0 100px;
+        position: relative;
+    }
+
+    .hero-content {
+        max-width: 700px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero-title {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 60px;
+        font-weight: 500;
+        line-height: 1.1;
+        margin-bottom: 28px;
+        color: var(--ink-blue);
+        letter-spacing: -0.5px;
+    }
+
+    .hero-title span {
+        position: relative;
+        display: inline-block;
+    }
+
+    .hero-title span::after {
+        content: '';
+        position: absolute;
+        bottom: 5px;
+        left: 0;
+        width: 100%;
+        height: 12px;
+        background-color: rgba(59, 130, 246, 0.2);
+        z-index: -1;
+        transform: rotate(-1deg);
+    }
+
+    .hero-subtitle {
+        font-size: 20px;
+        color: var(--text-light);
+        margin-bottom: 40px;
+        line-height: 1.8;
+        font-weight: 300;
+    }
+
+    .hero-buttons {
+        display: flex;
+        gap: 20px;
+        margin-top: 40px;
+    }
+
+    .hero-decoration {
+        position: absolute;
+        right: 5%;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 400px;
+        height: 500px;
+    }
+
+    .decoration-circle {
+        position: absolute;
+        border-radius: 50%;
+        background-color: var(--light-blue);
+        opacity: 0.6;
+    }
+
+    .circle-1 {
+        width: 300px;
+        height: 300px;
+        top: 50px;
+        right: 50px;
+    }
+
+    .circle-2 {
+        width: 200px;
+        height: 200px;
+        background-color: rgba(59, 130, 246, 0.3);
+        bottom: 50px;
+        left: 0;
+    }
+
+    .book-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 180px;
+        color: var(--blue);
+        opacity: 0.7;
+        z-index: 1;
+    }
+
+    /* Blog Preview */
+    .blog-preview {
+        background-color: var(--white);
+        border-radius: var(--radius);
+        padding: 50px;
+        margin: 80px 0;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .blog-preview::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 6px;
+        height: 100%;
+        background: linear-gradient(to bottom, var(--light-ink), var(--blue));
+    }
+
+    .blog-meta {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 20px;
+        color: var(--text-light);
+        font-size: 15px;
+    }
+
+    .blog-date {
+        background-color: rgba(59, 130, 246, 0.1);
+        padding: 6px 15px;
+        border-radius: 20px;
+        color: var(--blue);
+        font-weight: 500;
+    }
+
+    .blog-category {
+        color: var(--red); /* Красный для категории блога */
+        font-weight: 500;
+    }
+
+    .blog-preview-title {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 36px;
+        font-weight: 500;
+        margin-bottom: 25px;
+        color: var(--ink-blue);
+        line-height: 1.3;
+    }
+
+    .blog-preview-content {
+        font-size: 18px;
+        color: var(--text);
+        margin-bottom: 30px;
+        line-height: 1.8;
+        font-weight: 300;
+    }
+
+    .blog-preview-content img {
+        max-width: 100%;
+        border-radius: var(--radius);
+        margin: 25px 0;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .blog-preview-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 40px;
+        padding-top: 30px;
+        border-top: 1px solid var(--border);
+    }
+
+    .blog-author {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .author-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: var(--light-blue);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--blue);
+        font-weight: 500;
+        font-size: 18px;
+    }
+
+    .author-info h4 {
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--ink-blue);
+        margin-bottom: 5px;
+    }
+
+    .author-info p {
+        font-size: 14px;
+        color: var(--text-light);
+    }
+
+    /* About */
+    .about {
+        display: flex;
+        align-items: center;
+        gap: 80px;
+        margin: 100px 0;
+    }
+
+    .about-content {
+        flex: 1;
+    }
+
+    .about-title {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 44px;
+        font-weight: 500;
+        margin-bottom: 24px;
+        color: var(--ink-blue);
+    }
+
+    .about-text {
+        font-size: 18px;
+        color: var(--text);
+        margin-bottom: 30px;
+        line-height: 1.8;
+        font-weight: 300;
+    }
+
+    .about-stats {
+        display: flex;
+        gap: 40px;
+        margin-top: 40px;
+    }
+
+    .stat {
+        text-align: center;
+    }
+
+    .stat-number {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 42px;
+        font-weight: 500;
+        color: var(--blue);
+        margin-bottom: 5px;
+    }
+
+    .stat-label {
+        font-size: 14px;
+        color: var(--text-light);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+    .about-image {
+        flex: 1;
+        height: 500px;
+        border-radius: var(--radius);
+        background-color: var(--light-blue);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+    }
+
+    .about-image::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, rgba(232, 240, 254, 0.8), rgba(59, 130, 246, 0.4));
+    }
+
+    .about-icon {
+        font-size: 160px;
+        color: var(--blue);
+        opacity: 0.8;
+        z-index: 1;
+    }
+
+    /* Reviews */
+    .section {
+        padding: 100px 0;
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 80px;
+    }
+
+    .section-title {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 44px;
+        font-weight: 500;
+        margin-bottom: 20px;
+        color: var(--ink-blue);
+    }
+
+    .section-subtitle {
+        font-size: 18px;
+        color: var(--text-light);
+        max-width: 600px;
+        margin: 0 auto;
+        font-weight: 300;
+    }
+
+    .reviews-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 30px;
+    }
+
+    .review-card {
+        background-color: var(--white);
+        border-radius: var(--radius);
+        padding: 40px;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+        border: 1px solid var(--border);
+        position: relative;
+    }
+
+    .review-card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--shadow-hover);
+    }
+
+    .review-card::before {
+        content: '"';
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 80px;
+        color: var(--light-blue);
+        line-height: 1;
+        opacity: 0.5;
+    }
+
+    .review-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 25px;
+        margin-left: 20px;
+    }
+
+    .review-avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: var(--light-blue);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 500;
+        font-size: 20px;
+        color: var(--blue);
+        margin-right: 20px;
+        border: 2px solid var(--cream);
+    }
+
+    .review-info h4 {
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 5px;
+        color: var(--ink-blue);
+    }
+
+    .review-info p {
+        color: var(--text-light);
+        font-size: 14px;
+        font-weight: 300;
+    }
+
+    .review-stars {
+        color: var(--red); /* Красный для звездочек отзывов */
+        margin-bottom: 20px;
+        font-size: 16px;
+        margin-left: 20px;
+    }
+
+    .review-text {
+        color: var(--text);
+        font-size: 16px;
+        line-height: 1.8;
+        font-style: italic;
+        margin-left: 20px;
+        font-weight: 300;
+    }
+
+    /* Responsive */
+    @media (max-width: 1100px) {
+        .hero-decoration {
+            display: none;
+        }
+        
+        .hero-content {
+            max-width: 100%;
+            text-align: center;
+        }
+        
+        .hero-buttons {
+            justify-content: center;
+        }
+    }
+
+    @media (max-width: 900px) {
+        .blog-preview-footer {
+            flex-direction: column;
+            gap: 25px;
+            text-align: center;
+        }
+        
+        .blog-author {
+            justify-content: center;
+        }
+        
+        .about {
+            flex-direction: column;
+            gap: 60px;
+        }
+        
+        .about-image {
+            width: 100%;
+            height: 400px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .hero-title {
+            font-size: 48px;
+        }
+        
+        .section-title, .blog-preview-title {
+            font-size: 36px;
+        }
+        
+        .hero-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .reviews-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .about-stats {
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .blog-meta {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title">Русский язык <span>с теплом</span> и вниманием</h1>
+            <p class="hero-subtitle">
+                Индивидуальные уроки в уютной атмосфере, где каждый ученик чувствует себя особенным. 
+                Не просто обучение, а путешествие в мир языка, наполненное пониманием и заботой.
+            </p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary" id="heroRegisterBtn">
+                    <i class="fas fa-heart"></i> Записаться на урок
+                </a>
+                <a href="{% url 'blog:posts' %}" class="btn btn-secondary">
+                    <i class="fas fa-book"></i> Читать блог
+                </a>
+            </div>
+        </div>
+        <div class="hero-decoration">
+            <div class="decoration-circle circle-1"></div>
+            <div class="decoration-circle circle-2"></div>
+            <div class="book-icon">
+                <i class="fas fa-book-open"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About -->
+<section id="about">
+    <div class="container about">
+        <div class="about-content">
+            <h2 class="about-title">Не просто репетитор, а проводник в мир языка</h2>
+            <p class="about-text">
+                Меня зовут Анна. Более 8 лет я помогаю ученикам находить свой путь в изучении русского языка. 
+                Моя философия — создание комфортной, поддерживающей атмосферы, в которой обучение становится 
+                не обязанностью, а приятным времяпровождением.
+            </p>
+            <p class="about-text">
+                Я верю, что каждый человек обладает уникальным стилем обучения. Моя задача — найти подход, 
+                который подходит именно вам, и создать программу, которая учитывает ваши интересы, цели и темп.
+            </p>
+            
+            <div class="about-stats">
+                <div class="stat">
+                    <div class="stat-number">8+</div>
+                    <div class="stat-label">Лет опыта</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">120+</div>
+                    <div class="stat-label">Учеников</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Индивидуальный подход</div>
+                </div>
+            </div>
+        </div>
+        <div class="about-image">
+            <div class="about-icon">
+                <i class="fas fa-comments"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Blog Preview -->
+<section id="blog">
+    <div class="container">
+        <div class="blog-preview">
+            <div class="blog-meta">
+                <span class="blog-date">15 марта 2023</span>
+                <span class="blog-category">Методика преподавания</span>
+            </div>
+            <h2 class="blog-preview-title">Как сделать изучение падежей увлекательным: мой опыт</h2>
+            <div class="blog-preview-content">
+                <p>Падежи — одна из самых сложных тем для изучающих русский язык. Но за годы преподавания я нашла способ превратить эту сложную грамматику в увлекательное приключение.</p>
+                
+                <p>Вместо скучных таблиц мы с учениками создаем "карту падежей" — визуальную схему, где каждый падеж ассоциируется с определенным цветом и образом. Например, винительный падеж — это синий путь действия, а предложный — зеленая территория места.</p>
+                
+                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Учебные материалы по русскому языку" style="width: 100%; height: 300px; object-fit: cover;">
+                
+                <p>На последнем уроке мы практиковали падежи через игру "Город мечты". Ученики описывали свой идеальный город, используя разные падежи: "В городе моей мечты есть парк (именительный), я гуляю по парку (дательный), вижу красивый фонтан в парке (предложный)" и так далее.</p>
+                
+                <p>Результат? Вместо страха перед падежами — интерес и желание экспериментировать с языком. А самое главное — понимание, что грамматика может быть творческим процессом, а не скучной необходимостью.</p>
+            </div>
+            <div class="blog-preview-footer">
+                <div class="blog-author">
+                    <div class="author-avatar">А</div>
+                    <div class="author-info">
+                        <h4>Анна</h4>
+                        <p>Репетитор русского языка</p>
+                    </div>
+                </div>
+                <a href="blog.html" class="btn btn-primary">
+                    <i class="fas fa-book-open"></i> Все записи блога
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Reviews -->
+<section class="section" id="reviews">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Слова учеников</h2>
+            <p class="section-subtitle">Истории тех, кто уже открыл для себя русский язык в новой атмосфере</p>
+        </div>
+        
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">ЕК</div>
+                    <div class="review-info">
+                        <h4>Екатерина К.</h4>
+                        <p>Франция, 28 лет</p>
+                    </div>
+                </div>
+                <div class="review-stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="review-text">
+                    "После переезда в Москву боялась, что никогда не выучу русский. Анна создала такую тёплую атмосферу, 
+                    что страх ушёл после первого же занятия. Теперь могу свободно общаться с коллегами и даже шутить на русском!"
+                </p>
+            </div>
+            
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">МЛ</div>
+                    <div class="review-info">
+                        <h4>Марк Л.</h4>
+                        <p>Германия, 32 года</p>
+                    </div>
+                </div>
+                <div class="review-stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="review-text">
+                    "Искал репетитора для бизнес-русского. Анна не только подготовила специальную программу, 
+                    но и помогла понять культурные особенности общения. Занятия проходят за чашкой чая и всегда 
+                    вдохновляют на новые успехи."
+                </p>
+            </div>
+            
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">СВ</div>
+                    <div class="review-info">
+                        <h4>София В.</h4>
+                        <p>Россия, 17 лет</p>
+                    </div>
+                </div>
+                <div class="review-stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="review-text">
+                    "Готовилась к ЕГЭ и думала, что это будет скучно и сложно. Но Анна превратила подготовку 
+                    в увлекательное путешествие. Сдала на 96 баллов и теперь сама влюблена в русский язык!"
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    
+    // Initialize blog preview with current date
+    document.addEventListener('DOMContentLoaded', function() {
+        const blogDateElement = document.querySelector('.blog-date');
+        if (blogDateElement) {
+            const now = new Date();
+            const options = { day: 'numeric', month: 'long', year: 'numeric' };
+            const formattedDate = now.toLocaleDateString('ru-RU', options);
+            blogDateElement.textContent = formattedDate;
+        }
+    });
+</script>
+{% endblock %}

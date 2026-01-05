@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Блог | Русский язык с теплом{% endblock %}
+
+{% block content %}
+<section class="blog-page" id="blog">
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">Блог о русском языке</h1>
+            <p class="page-subtitle">Советы, истории и вдохновение для изучающих русский язык. Здесь я делюсь своим опытом и любовью к языку.</p>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters">
+            <div class="filters-header">
+                <h3 class="filters-title">Найти статью</h3>
+                <form method="get" action="{% url 'blog:posts' %}" class="search-box" id="search-form">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" 
+                           class="search-input" 
+                           name="q" 
+                           placeholder="Поиск по статьям..." 
+                           id="search-input"
+                           value="{{ search_query|default:'' }}">
+                    <input type="hidden" name="tag" id="tag-filter" value="{{ current_tag }}">
+                </form>
+            </div>
+            <div class="filter-tags">
+                <div class="filter-tag {% if not current_tag %}active-tag{% endif %}">
+                    <a href="{% url 'blog:posts' %}{% if search_query %}?q={{ search_query }}{% endif %}">
+                        <i class="fas fa-book"></i> Все статьи
+                    </a>
+                </div>
+                {% for tag in tags %}
+                <div class="filter-tag {% if current_tag == tag.title %}active-tag{% endif %}">
+                    <a href="{% url 'blog:posts' %}?tag={{ tag.title }}{% if search_query %}&q={{ search_query }}{% endif %}">
+                        <i class="fas fa-tag"></i> {{ tag.title }}
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Blog Grid -->
+        <div class="blog-grid" id="blog-grid">
+            {% for post in posts %}
+            <article class="blog-card">
+                {% if post.img %}
+                <img src="{{ post.img.url }}" alt="{{ post.title }}" class="blog-card-image">
+                {% else %}
+                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="{{ post.title }}" class="blog-card-image">
+                {% endif %}
+                <div class="blog-card-content">
+                    <div class="blog-card-meta">
+                        <span class="blog-card-date">{{ post.date|date:"d F Y" }}</span>
+                        {% if post.tag %}
+                        <span class="blog-card-category">{{ post.tag.title }}</span>
+                        {% endif %}
+                    </div>
+                    <h3 class="blog-card-title">{{ post.title }}</h3>
+                    <div class="blog-card-excerpt">
+                        {{ post.content|striptags|truncatechars:200 }}
+                    </div>
+                    <div class="blog-card-footer">
+                        <div class="blog-card-author">
+                            <div class="author-avatar-small">{{ post.author|first|upper }}</div>
+                            <span class="author-name">{{ post.author }}</span>
+                        </div>
+                        <a href="..." class="blog-card-link">
+                            Читать далее
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </article>
+            {% empty %}
+            <div class="no-posts">
+                <h3>Статьи не найдены</h3>
+                <p>
+                    {% if current_tag %}
+                        По тегу "{{ current_tag }}" нет статей.
+                    {% elif search_query %}
+                        По запросу "{{ search_query }}" ничего не найдено.
+                    {% else %}
+                        Пока нет опубликованных статей. Загляните сюда позже!
+                    {% endif %}
+                </p>
+                {% if current_tag or search_query %}
+                <a href="{% url 'blog:posts' %}" class="btn btn-primary" style="margin-top: 20px;">
+                    Показать все статьи
+                </a>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        {% if is_paginated %}
+        <div class="pagination">
+            {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}{% if current_tag %}&tag={{ current_tag }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}" 
+               class="pagination-link">
+                <i class="fas fa-chevron-left"></i>
+            </a>
+            {% endif %}
+            
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                <span class="pagination-link active">{{ num }}</span>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <a href="?page={{ num }}{% if current_tag %}&tag={{ current_tag }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}" 
+                   class="pagination-link">{{ num }}</a>
+                {% endif %}
+            {% endfor %}
+            
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}{% if current_tag %}&tag={{ current_tag }}{% endif %}{% if search_query %}&q={{ search_query }}{% endif %}" 
+               class="pagination-link">
+                <i class="fas fa-chevron-right"></i>
+            </a>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        <!-- Newsletter -->
+        <div class="newsletter">
+            <h3 class="newsletter-title">Получайте новые статьи</h3>
+            <p class="newsletter-description">Подпишитесь на рассылку, чтобы первыми получать новые материалы блога, советы по изучению языка и специальные предложения.</p>
+            <form class="newsletter-form" method="post" action="#">
+                {% csrf_token %}
+                <input type="email" class="newsletter-input" name="email" placeholder="Ваш email" required>
+                <button type="submit" class="btn btn-primary">Подписаться</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Обработка поиска
+    const searchForm = document.getElementById('search-form');
+    const searchInput = document.getElementById('search-input');
+    
+    if (searchInput) {
+        // Автопоиск при вводе (с задержкой)
+        let searchTimeout;
+        searchInput.addEventListener('input', function() {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                searchForm.submit();
+            }, 500); // Задержка 500ms
+        });
+        
+        // Очистка поиска
+        searchInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                this.value = '';
+                this.form.submit();
+            }
+        });
+    }
+    
+    // Обработка кликов по тегам (уже работает через ссылки)
+    // Можно добавить подтверждение активного тега
+    document.querySelectorAll('.filter-tag').forEach(tag => {
+        tag.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A') {
+                // Показываем индикатор загрузки
+                const blogGrid = document.getElementById('blog-grid');
+                blogGrid.style.opacity = '0.5';
+                blogGrid.style.transition = 'opacity 0.3s';
+            }
+        });
+    });
+</script>
+{% endblock %}
