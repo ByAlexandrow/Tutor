@@ -123,16 +123,6 @@
         </div>
         {% endif %}
 
-        <!-- Newsletter -->
-        <div class="newsletter">
-            <h3 class="newsletter-title">Получайте новые статьи</h3>
-            <p class="newsletter-description">Подпишитесь на рассылку, чтобы первыми получать новые материалы блога, советы по изучению языка и специальные предложения.</p>
-            <form class="newsletter-form" method="post" action="#">
-                {% csrf_token %}
-                <input type="email" class="newsletter-input" name="email" placeholder="Ваш email" required>
-                <button type="submit" class="btn btn-primary">Подписаться</button>
-            </form>
-        </div>
     </div>
 </section>
 {% endblock %}
