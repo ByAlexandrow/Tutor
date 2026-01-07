@@ -29,14 +29,19 @@ class Post(models.Model):
 
     title = models.CharField(
         max_length=250,
-        verbose_name='Title',
+        verbose_name='Title'
+    )
+    slug = models.SlugField(
+        max_length=100,
+        unique=True,
+        verbose_name='Slug'
     )
     img = models.ImageField(
         upload_to='blog/posts/',
         verbose_name='image'
     )
     content = HTMLField(
-        default='Add some content here',
+        default='Add some content here'
     )
     tag = models.ForeignKey(
         Tag, 
@@ -52,14 +57,15 @@ class Post(models.Model):
     )
     date = models.DateTimeField(
         default=timezone.now,
-        verbose_name='Date',
+        verbose_name='Date'
     )
     is_published = models.BooleanField(
         default=False,
-        verbose_name='Publish',
+        verbose_name='Publish'
     )
 
     class Meta:
+        ordering = ('date',)
         verbose_name = 'Post'
         verbose_name_plural = 'Posts'
     

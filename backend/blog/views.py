@@ -60,14 +60,14 @@ class PostsListView(ListView):
         print(f"DEBUG: Current tag in context: {context['current_tag']}")  # Для отладки
         return context
 
-# class BlogDetailView(DetailView):
-#     model = Post
-#     template_name = 'blog/blog_detail.html'
-#     context_object_name = 'post'
+class PostDetailView(DetailView):
+    model = Post
+    template_name = 'blog/post.html'
+    context_object_name = 'post'
     
-#     def get_queryset(self):
-#         # Получаем только опубликованные посты
-#         return Post.objects.filter(is_published=True)
+    def get_queryset(self):
+        # Получаем только опубликованные посты
+        return Post.objects.filter(is_published=True)
 
 
 # Для главной страницы (если нужно)
