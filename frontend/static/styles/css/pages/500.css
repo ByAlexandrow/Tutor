@@ -1,0 +1,197 @@
+.container-error-500 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #f8fafc;
+}
+/* Иконка ошибки */
+.error-icon {
+    font-size: 60px;
+    color: var(--ink-blue);
+    margin-bottom: 30px;
+    opacity: 0.7;
+}
+.error-500-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 500;
+    color: var(--ink-blue);
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+.error-500-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    color: #334155;
+    margin-bottom: 30px;
+    max-width: 600px;
+    line-height: 1.6;
+}
+.error-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 180px;
+    font-weight: 500;
+    color: var(--ink-blue);
+    margin: 30px 0;
+    line-height: 1;
+    opacity: 0.8;
+}
+/* ===== КНОПКИ ===== */
+.error-buttons {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.error-btn {
+    display: inline-block;
+    padding: 14px 32px;
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 8px;
+    border: 2px solid;
+    text-align: center;
+    min-width: 180px;
+}
+.error-btn.back {
+    background-color: var(--ink-blue);
+    color: #f8fafc;
+    border-color: var(--ink-blue);
+}
+.error-btn.home {
+    background-color: transparent;
+    color: var(--ink-blue);
+    border-color: var(--ink-blue);
+}
+/* Просто меняем цвет при наведении */
+.error-btn.back:hover {
+    background-color: var(--blue);
+    border-color: var(--blue);
+    color: #f8fafc;
+}
+.error-btn.home:hover {
+    background-color: var(--ink-blue);
+    color: #f8fafc;
+}
+
+/* ===== АДАПТИВНОСТЬ ===== */
+/* Планшеты (до 1024px) */
+@media (max-width: 1024px) {
+    .error-500-title {
+        font-size: 42px;
+    }
+    .error-number {
+        font-size: 160px;
+    }
+    .error-500-description {
+        font-size: 18px;
+        max-width: 500px;
+    }
+    .error-icon {
+        font-size: 50px;
+    }
+    .error-btn {
+        padding: 13px 28px;
+        font-size: 17px;
+    }
+}
+
+/* Планшеты (до 768px) */
+@media (max-width: 768px) {
+    .container-error-500 {
+        min-height: 70vh;
+        padding: 30px 15px;
+    }
+    .error-500-title {
+        font-size: 36px;
+        margin-bottom: 15px;
+    }
+    .error-number {
+        font-size: 140px;
+        margin: 20px 0;
+    }
+    .error-500-description {
+        font-size: 17px;
+        margin-bottom: 25px;
+        padding: 0 15px;
+    }
+    .error-icon {
+        font-size: 45px;
+        margin-bottom: 20px;
+    }
+    .error-buttons {
+        gap: 15px;
+        margin-top: 25px;
+    }
+    .error-btn {
+        padding: 12px 24px;
+        font-size: 16px;
+        min-width: 160px;
+    }
+}
+
+/* Мобильные устройства (до 576px) */
+@media (max-width: 576px) {
+    .container-error-500 {
+        min-height: 60vh;
+        padding: 25px 10px;
+    }
+    .error-500-title {
+        font-size: 32px;
+    }
+    .error-number {
+        font-size: 120px;
+        margin: 15px 0;
+    }
+    .error-500-description {
+        font-size: 16px;
+        margin-bottom: 20px;
+        line-height: 1.5;
+    }
+    .error-icon {
+        font-size: 40px;
+    }
+    .error-buttons {
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+        max-width: 280px;
+    }
+    .error-btn {
+        width: 100%;
+        padding: 14px;
+        font-size: 16px;
+        min-width: auto;
+    }
+}
+
+/* Очень маленькие устройства (до 400px) */
+@media (max-width: 400px) {
+    .error-500-title {
+        font-size: 28px;
+    }
+    .error-number {
+        font-size: 100px;
+    }
+    .error-500-description {
+        font-size: 15px;
+        padding: 0 10px;
+    }
+    .error-icon {
+        font-size: 35px;
+    }
+    .error-buttons {
+        max-width: 100%;
+    }
+    .error-btn {
+        padding: 12px;
+        font-size: 15px;
+    }
+}

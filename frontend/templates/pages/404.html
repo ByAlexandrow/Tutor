@@ -2,29 +2,26 @@
 {% load static %}
 {% block title %}404 | Страница не найдена{% endblock %}
 {% block content %}
-<div class="container-error-500">
-    <!-- Декоративные элементы -->
-    <div class="error-decoration"></div>
-    <div class="error-decoration"></div>
+<div class="container-error-404">
     <!-- Иконка ошибки -->
     <div class="error-icon">
-        <i class="fas fa-exclamation-triangle"></i>
+        <i class="fas fa-search"></i>
     </div>
     <!-- Заголовок -->
-    <h1 class="error-500-title">Страница не найдена</h1>
+    <h1 class="error-404-title">Страница не найдена</h1>
     <!-- Описание -->
-    <p class="error-500-description">Возможно, она была временно удалена или перемещена!</p>
-    <!-- Номер ошибки -->
+    <p class="error-404-description">Возможно, она была временно удалена или перемещена</p>
+    <!-- Код ошибки -->
     <h2 class="error-number">404</h2>
     <!-- Дополнительное описание -->
-    <p class="error-500-description">Разбираемся и исправляем</p>
+    <p class="error-404-description">Разбираемся и исправляем</p>
     <!-- Кнопки -->
-    <div class="buttons-container">
-        <a class="back-link" href="javascript:history.back()">
-            <span class="back-word">← Вернуться назад</span>
+    <div class="error-buttons">
+        <a href="javascript:history.back()" class="error-btn back">
+            ← Вернуться назад
         </a>
-        <a class="back-main" href="{% url 'index:index' %}">
-            <span class="back-word">На главную страницу</span>
+        <a href="{% url 'index:index' %}" class="error-btn home">
+            На главную
         </a>
     </div>
 </div>
