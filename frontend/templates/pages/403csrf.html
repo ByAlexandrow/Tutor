@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}403 | Достцуп запрещён{% endblock %}
+{% block content %}
+<div class="container-error-500">
+    <!-- Декоративные элементы -->
+    <div class="error-decoration"></div>
+    <div class="error-decoration"></div>
+    <!-- Иконка ошибки -->
+    <div class="error-icon">
+        <i class="fas fa-exclamation-triangle"></i>
+    </div>
+    <!-- Заголовок -->
+    <h1 class="error-500-title">Доступ запрещён</h1>
+    <!-- Описание -->
+    <p class="error-500-description">Отказано в праве доступа!</p>
+    <!-- Номер ошибки -->
+    <h2 class="error-number">403</h2>
+    <!-- Дополнительное описание -->
+    <p class="error-500-description">Вам сюда нельзя</p>
+    <!-- Кнопки -->
+    <div class="buttons-container">
+        <a class="back-link" href="javascript:history.back()">
+            <span class="back-word">← Вернуться назад</span>
+        </a>
+        <a class="back-main" href="{% url 'index:index' %}">
+            <span class="back-word">На главную страницу</span>
+        </a>
+    </div>
+</div>
+{% endblock %}
