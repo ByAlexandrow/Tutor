@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-
 {% block title %}Репетитор по русскому языку онлайн{% endblock %}
-
 {% block content %}
 <!-- Hero -->
 <section class="hero">
@@ -40,7 +38,6 @@
         <div class="promo-content">
             <div class="promo-text">
                 <h2 class="promo-title">Индивидуальные и групповые занятия</h2>
-                
                 <div class="features-grid">
                     <div class="feature-item">
                         <div class="feature-icon">
@@ -50,7 +47,6 @@
                             <h4>Продолжительность 60 минут</h4>
                         </div>
                     </div>
-                    
                     <div class="feature-item">
                         <div class="feature-icon">
                             <i class="fas fa-laptop"></i>
@@ -59,7 +55,6 @@
                             <h4>Онлайн<br> формат</h4>
                         </div>
                     </div>
-                    
                     <div class="feature-item">
                         <div class="feature-icon">
                             <i class="fas fa-chart-line"></i>
@@ -68,7 +63,6 @@
                             <h4>Чёткая методология</h4>
                         </div>
                     </div>
-                    
                     <div class="feature-item">
                         <div class="feature-icon">
                             <i class="fas fa-chart-bar"></i>
@@ -103,7 +97,6 @@
                 <i class="fas fa-check-circle" style="color: #28a745;"></i> Даю реальные экзаменационные задания, что заложит прочный фундамент для высоких баллов на ОГЭ/ЕГЭ.<br>
                 <i class="fas fa-check-circle" style="color: #28a745;"></i> Учу писать сочинения и изложения, которые оцениваются на максимальный балл.
             </p>
-            
             <div class="about-stats">
                 <div class="stat">
                     <div class="stat-number">25+</div>
@@ -130,7 +123,6 @@
                         </div>
                         <div class="slide-caption">Учебные материалы</div>
                     </div>
-                    
                     <!-- Слайд 2 -->
                     <div class="slider-slide">
                         <div class="slide-image">
@@ -138,7 +130,6 @@
                         </div>
                         <div class="slide-caption">Рабочий процесс</div>
                     </div>
-                    
                     <!-- Слайд 3 -->
                     <div class="slider-slide">
                         <div class="slide-image">
@@ -146,7 +137,6 @@
                         </div>
                         <div class="slide-caption">Книги и учебники</div>
                     </div>
-                    
                     <!-- Слайд 4 -->
                     <div class="slider-slide">
                         <div class="slide-image">
@@ -154,7 +144,6 @@
                         </div>
                         <div class="slide-caption">Обучение онлайн</div>
                     </div>
-                    
                     <!-- Слайд 5 -->
                     <div class="slider-slide">
                         <div class="slide-image">
@@ -163,22 +152,11 @@
                         <div class="slide-caption">Индивидуальный подход</div>
                     </div>
                 </div>
-                
                 <!-- Навигация слайдера -->
                 <div class="slider-nav">
                     <button class="slider-prev">
                         <i class="fas fa-chevron-left"></i>
                     </button>
-                    
-                    <!-- Индикаторы слайдов -->
-                    <div class="slider-dots">
-                        <span class="dot active" data-slide="0"></span>
-                        <span class="dot" data-slide="1"></span>
-                        <span class="dot" data-slide="2"></span>
-                        <span class="dot" data-slide="3"></span>
-                        <span class="dot" data-slide="4"></span>
-                    </div>
-                    
                     <button class="slider-next">
                         <i class="fas fa-chevron-right"></i>
                     </button>
@@ -206,7 +184,6 @@
                 {% else %}
                     {{ last_post.content|striptags|truncatechars:500|safe }}
                 {% endif %}
-                
                 {% if last_post.img %}
                 <img src="{{ last_post.img.url }}" 
                      alt="{{ last_post.title }}" 
@@ -216,9 +193,8 @@
                      alt="{{ last_post.title }}" 
                      style="width: 100%; max-height: 300px; object-fit: cover; border-radius: var(--radius); margin: 25px 0;">
                 {% endif %}
-                
                 <p style="font-style: italic; color: var(--text-light); margin-top: 20px;">
-                    ...продолжение в полной версии статьи
+                    ...продолжение в <a href="{% url 'blog:post' last_post.slug %}"><i>полной версии статьи<i></a>
                 </p>
             </div>
             <div class="blog-preview-footer">
@@ -229,8 +205,8 @@
                         <p>Автор статьи</p>
                     </div>
                 </div>
-                <a href="{% url 'blog:post' last_post.slug %}" class="btn btn-primary">
-                    <i class="fas fa-book-open"></i> Читать статью полностью
+                <a href="{% url 'blog:posts' %}" class="btn btn-primary">
+                    <i class="fas fa-book-open"></i> Перейти в блог
                 </a>
             </div>
         </div>
@@ -244,11 +220,9 @@
             <h2 class="blog-preview-title">Скоро здесь появится первая статья</h2>
             <div class="blog-preview-content">
                 <p>Я готовлю для вас интересные материалы о русском языке, методиках преподавания и истории языка. Первая статья появится здесь в ближайшее время!</p>
-                
                 <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
                      alt="Скоро новые статьи" 
                      style="width: 100%; max-height: 300px; object-fit: cover; border-radius: var(--radius); margin: 25px 0;">
-                
                 <p>А пока вы можете познакомиться с моими методиками преподавания или записаться на пробный урок.</p>
             </div>
             <div class="blog-preview-footer">
