@@ -1,26 +1,3 @@
-# from django.views.generic import ListView, DetailView
-# from django.shortcuts import render
-# from django.core.paginator import Paginator
-# from .models import Post, Tag
-
-# class PostsListView(ListView):
-#     model = Post
-#     template_name = 'blog/posts.html'
-#     context_object_name = 'posts'
-#     paginate_by = 6
-#     ordering = ['-date']
-    
-#     def get_queryset(self):
-#         # Получаем только опубликованные посты
-#         return Post.objects.filter(is_published=True)
-    
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         # Добавляем теги в контекст
-#         context['tags'] = Tag.objects.filter(is_published=True)
-#         return context
-
-# blog/views.py
 from django.views.generic import ListView, DetailView
 from django.db.models import Q
 from .models import Post, Tag

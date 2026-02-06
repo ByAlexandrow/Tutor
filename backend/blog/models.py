@@ -5,43 +5,43 @@ from tinymce.models import HTMLField
 
 
 class Tag(models.Model):
-    """Tag's model."""
+    """Модель тэга."""
 
     title = models.CharField(
         max_length=100,
-        verbose_name='Title',
+        verbose_name='Название тэга',
     )
     is_published = models.BooleanField(
         default=True,
-        verbose_name='Publish'
+        verbose_name='Опубликовать'
     )
 
     class Meta:
-        verbose_name = 'Tag'
-        verbose_name_plural = 'Tags'
+        verbose_name = 'Тэг'
+        verbose_name_plural = 'Тэги'
     
     def __str__(self):
         return f'{self.title} - {self.is_published}'
 
 
 class Post(models.Model):
-    """Post's model."""
+    """Модель поста."""
 
     title = models.CharField(
         max_length=250,
-        verbose_name='Title'
+        verbose_name='Название поста'
     )
     slug = models.SlugField(
         max_length=100,
         unique=True,
-        verbose_name='Slug'
+        verbose_name='Слаг'
     )
     img = models.ImageField(
         upload_to='blog/posts/',
-        verbose_name='image'
+        verbose_name='Титульная картинка'
     )
     content = HTMLField(
-        default='Add some content here'
+        default='Пишите статью здесь.'
     )
     tag = models.ForeignKey(
         Tag, 
@@ -49,25 +49,25 @@ class Post(models.Model):
         null=True, 
         blank=True,
         related_name='posts',
-        verbose_name='Tag'
+        verbose_name='Тэг'
     )
     author = models.CharField(
         default='Надежда',
-        verbose_name='Author'
+        verbose_name='Автор'
     )
     date = models.DateTimeField(
         default=timezone.now,
-        verbose_name='Date'
+        verbose_name='Дата и время публикации'
     )
     is_published = models.BooleanField(
         default=False,
-        verbose_name='Publish'
+        verbose_name='Опубликовать'
     )
 
     class Meta:
         ordering = ('date',)
-        verbose_name = 'Post'
-        verbose_name_plural = 'Posts'
+        verbose_name = 'Пост'
+        verbose_name_plural = 'Посты'
     
     def __str__(self):
         return f'{self.title} - {self.author} - {self.tag} - {self.is_published}'
