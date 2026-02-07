@@ -140,6 +140,106 @@
         transform: translate(-10px, -10px);
     }
 }
+/* Адаптивные стили для мобильных устройств */
+@media (max-width: 992px) {
+    .hero .container {
+        flex-direction: column;
+        margin-top: 50px;
+        gap: 40px;
+    }
+    .hero-title {
+        font-size: 48px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .hero-subtitle {
+        font-size: 18px;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .hero-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 30px;
+    }
+    .teacher-photo {
+        height: 400px;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    /* Меняем порядок элементов внутри контейнера */
+    .hero .container {
+        display: flex;
+        flex-direction: column;
+    }
+    .hero-title {
+        order: 1; /* Заголовок первый */
+        width: 100%;
+    }
+    .hero-image {
+        order: 2; /* Картинка вторая */
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .hero-subtitle {
+        order: 3; /* Подзаголовок третий */
+        width: 100%;
+    }
+    .hero-buttons {
+        order: 4; /* Кнопки четвертые */
+        width: 100%;
+    }
+    /* Скрываем оригинальные контейнеры и показываем переупорядоченные элементы */
+    .hero-content {
+        display: contents; /* Разрушаем контейнер, чтобы дочерние элементы стали прямыми детьми .container */
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 10px 0 40px;
+    }
+    .hero-title {
+        font-size: 36px;
+    }
+    .hero-subtitle {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+    .teacher-photo {
+        height: 350px;
+    }
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    .btn {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 28px;
+    }
+    .teacher-photo {
+        height: 300px;
+        border-width: 5px;
+    }
+    .image-decoration {
+        top: -20px;
+        right: -20px;
+        bottom: -20px;
+        left: -20px;
+    }
+    .image-container::before,
+    .image-container::after {
+        display: none;
+    }
+}
 
 /* Promo блок */
 .promo {
