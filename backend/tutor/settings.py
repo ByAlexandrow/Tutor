@@ -39,6 +39,7 @@ CSRF_TRUSTED_ORIGINS = [
 INSTALLED_APPS = [
     'index.apps.IndexConfig',
     'blog.apps.BlogConfig',
+    'reviews.apps.ReviewsConfig',
     'pages.apps.PagesConfig',
     'django.contrib.admin',
     'django.contrib.auth',

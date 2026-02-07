@@ -715,7 +715,6 @@
     font-size: 14px;
     color: var(--text-light);
 }
-
 /* Reviews */
 #reviews {
     scroll-margin-top: 70px;
@@ -856,7 +855,6 @@
         gap: 20px;
     }
 }
-
 @media (max-width: 992px) {
     .about {
         flex-direction: column;
@@ -875,7 +873,6 @@
         height: 350px;
     }
 }
-
 @media (max-width: 900px) {
     .blog-preview-footer {
         flex-direction: column;
@@ -897,7 +894,6 @@
         font-size: 1rem;
     }
 }
-
 @media (max-width: 768px) {
     .hero {
         padding: 80px 0 40px;
@@ -992,79 +988,63 @@
         scroll-margin-top: 70px;
     }
 }
-
 @media (max-width: 480px) {
     .hero {
         padding: 70px 0 30px;
     }
-    
     .hero-title {
         font-size: 36px;
     }
-    
     .hero-subtitle {
         font-size: 16px;
     }
-    
     .hero-image {
         max-width: 280px;
     }
-    
     .teacher-photo {
         height: 280px;
     }
-    
     .image-decoration {
         top: -15px;
         right: -15px;
         bottom: -15px;
         left: -15px;
     }
-    
     .features-grid {
         grid-template-columns: 1fr;
         gap: 15px;
         max-width: 300px;
         margin-bottom: 30px;
     }
-    
     .feature-item {
         padding: 15px;
         min-height: 120px;
     }
-    
     .feature-content h4 {
         font-size: 0.95rem;
     }
-    
     .pricing-info {
         padding-top: 20px;
     }
-    
     .pricing-text {
         font-size: 0.95rem;
     }
-    
     .slider-container {
         max-width: 320px;
     }
-    
     .slider-track {
         height: 250px;
     }
-    
     .slide-caption {
         padding: 12px;
         font-size: 14px;
     }
-    
     .slider-prev,
     .slider-next {
         width: 35px;
         height: 35px;
         font-size: 14px;
     }
-    
     .blog-preview {
         padding: 25px 20px;
         margin: 25px 0;
